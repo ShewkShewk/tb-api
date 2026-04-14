@@ -1,4 +1,4 @@
-package tb_api
+package tbapi
 
 import (
 	"errors"

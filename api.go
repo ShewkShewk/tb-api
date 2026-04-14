@@ -1,3 +1,3 @@
-package tb_api
+package tbapi
 
 type TabroomApi struct{}
