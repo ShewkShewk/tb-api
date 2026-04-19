@@ -2,6 +2,7 @@ package tbapi
 
 import (
 	"errors"
+	"net/url"
 	"reflect"
 	"testing"
 )
@@ -280,7 +281,9 @@ func TestBuilder_Build(t *testing.T) {
 				Password: "example_password",
 			},
 			wantErr: nil,
-			wantApi: &TabroomApi{},
+			wantApi: &TabroomApi{
+				url.URL{Scheme: "https", Host: "tabroom.com"},
+			},
 		},
 		{
 			name: "Builder with url missing will return an error",

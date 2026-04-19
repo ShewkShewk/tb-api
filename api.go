@@ -1,3 +1,7 @@
 package tbapi
 
-type TabroomApi struct{}
+import "net/url"
+
+type TabroomApi struct {
+	url url.URL
+}

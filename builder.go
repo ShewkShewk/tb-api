@@ -2,6 +2,7 @@ package tbapi
 
 import (
 	"errors"
+	"net/url"
 )
 
 type Builder struct {
@@ -34,7 +35,13 @@ func (b *Builder) Build() (error, *TabroomApi) {
 	if err != nil {
 		return err, nil
 	}
-	return nil, &TabroomApi{}
+	parsed, err := url.Parse(b.Hostname)
+	if err != nil {
+		return err, nil
+	}
+	return nil, &TabroomApi{
+		url: *parsed,
+	}
 }
 
 func (b *Builder) validate() error {
