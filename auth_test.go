@@ -18,7 +18,7 @@ func Test(t *testing.T) {
 	}{
 		{
 			name:          "Token successfully retrieved",
-			scenario:      "test_scenarios/complete.json",
+			scenario:      "test_scenarios/successful_login.json",
 			username:      "right_username",
 			password:      "right_password",
 			expectedToken: "tabroom_token_value",
