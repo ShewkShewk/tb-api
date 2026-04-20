@@ -7,10 +7,6 @@ import (
 	"regexp"
 )
 
-type CredentialsRetriever interface {
-	retrieveCredentials() (error, string)
-}
-
 const (
 	SALT = "salt"
 	SHA  = "sha"
