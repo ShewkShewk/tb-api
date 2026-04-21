@@ -18,7 +18,7 @@ func Test(t *testing.T) {
 	}{
 		{
 			name:          "Token successfully retrieved",
-			scenario:      "test_scenarios/successful_login.json",
+			scenario:      "test_scenarios/auth/successful_login.json",
 			username:      "right_username",
 			password:      "right_password",
 			expectedToken: "tabroom_token_value",
@@ -26,7 +26,7 @@ func Test(t *testing.T) {
 		},
 		{
 			name:          "Missing salt",
-			scenario:      "test_scenarios/missing_salt.json",
+			scenario:      "test_scenarios/auth/missing_salt.json",
 			username:      "right_username",
 			password:      "right_password",
 			expectedToken: "",
@@ -34,7 +34,7 @@ func Test(t *testing.T) {
 		},
 		{
 			name:          "Missing sha",
-			scenario:      "test_scenarios/missing_sha.json",
+			scenario:      "test_scenarios/auth/missing_sha.json",
 			username:      "right_username",
 			password:      "right_password",
 			expectedToken: "",
@@ -42,7 +42,7 @@ func Test(t *testing.T) {
 		},
 		{
 			name:          "Wrong Login",
-			scenario:      "test_scenarios/wrong_login.json",
+			scenario:      "test_scenarios/auth/wrong_login.json",
 			username:      "wrong_username",
 			password:      "wrong_password",
 			expectedToken: "",
