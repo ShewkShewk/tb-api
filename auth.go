@@ -8,8 +8,9 @@ import (
 )
 
 const (
-	SALT = "salt"
-	SHA  = "sha"
+	SALT          = "salt"
+	SHA           = "sha"
+	TABROOM_TOKEN = "TabroomToken"
 )
 
 func (t *TabroomApi) ensureAuthenticated() error {
@@ -21,6 +22,11 @@ func (t *TabroomApi) retrieveCredentials() (string, error) {
 	loginParameters, err := t.getLoginParameters()
 	if err != nil {
 		return "", err
+	}
+	// Check if credentials already exist, must happen after getLoginParameters to allow for cookie time outs
+	existingCookies := t.client.cookies()
+	if existingCookies[TABROOM_TOKEN] != "" {
+		return existingCookies[TABROOM_TOKEN], nil
 	}
 	if loginParameters[SALT] == "" {
 		return "", errors.New("unable to find salt in login parameters")
@@ -70,7 +76,7 @@ func (t *TabroomApi) getTabroomToken(loginForm url.Values) (string, error) {
 		return "", err
 	}
 	cookies := client.cookies()
-	val, ok := cookies["TabroomToken"]
+	val, ok := cookies[TABROOM_TOKEN]
 	if !ok {
 		return "", errors.New("unable to find TabroomToken within cookies after login")
 	}
