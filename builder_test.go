@@ -13,9 +13,9 @@ func Test_newBuilder(t *testing.T) {
 		want Builder
 	}{
 		{"NewBuilder returns an empty builder", Builder{
-			Hostname: "",
-			Username: "",
-			Password: "",
+			hostname: "",
+			username: "",
+			password: "",
 		}},
 	}
 	for _, tt := range tests {
@@ -53,9 +53,9 @@ func TestBuilder_withApiUrl(t *testing.T) {
 				apiUrl: "https://www.tabroom.com",
 			},
 			want: &Builder{
-				Hostname: "https://www.tabroom.com",
-				Username: "",
-				Password: "",
+				hostname: "https://www.tabroom.com",
+				username: "",
+				password: "",
 			},
 		},
 		{
@@ -69,9 +69,9 @@ func TestBuilder_withApiUrl(t *testing.T) {
 				apiUrl: "https://www.other.tabroom.com",
 			},
 			want: &Builder{
-				Hostname: "https://www.other.tabroom.com",
-				Username: "",
-				Password: "",
+				hostname: "https://www.other.tabroom.com",
+				username: "",
+				password: "",
 			},
 		},
 		{
@@ -85,18 +85,18 @@ func TestBuilder_withApiUrl(t *testing.T) {
 				apiUrl: "https://www.tabroom.com",
 			},
 			want: &Builder{
-				Hostname: "https://www.tabroom.com",
-				Username: "a_username_value",
-				Password: "a_password_value",
+				hostname: "https://www.tabroom.com",
+				username: "a_username_value",
+				password: "a_password_value",
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			b := &Builder{
-				Hostname: tt.fields.Hostname,
-				Username: tt.fields.Username,
-				Password: tt.fields.Password,
+				hostname: tt.fields.Hostname,
+				username: tt.fields.Username,
+				password: tt.fields.Password,
 			}
 			if got := b.WithHostname(tt.args.apiUrl); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("WithHostname() = %v, want %v", got, tt.want)
@@ -131,9 +131,9 @@ func TestBuilder_withUsername(t *testing.T) {
 				username: "example_username",
 			},
 			want: &Builder{
-				Hostname: "",
-				Username: "example_username",
-				Password: "",
+				hostname: "",
+				username: "example_username",
+				password: "",
 			},
 		},
 		{
@@ -147,9 +147,9 @@ func TestBuilder_withUsername(t *testing.T) {
 				username: "new_username",
 			},
 			want: &Builder{
-				Hostname: "",
-				Username: "new_username",
-				Password: "",
+				hostname: "",
+				username: "new_username",
+				password: "",
 			},
 		},
 		{
@@ -163,18 +163,18 @@ func TestBuilder_withUsername(t *testing.T) {
 				username: "example_username",
 			},
 			want: &Builder{
-				Hostname: "https://tabroom.com",
-				Username: "example_username",
-				Password: "example_password",
+				hostname: "https://tabroom.com",
+				username: "example_username",
+				password: "example_password",
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			b := &Builder{
-				Hostname: tt.fields.Hostname,
-				Username: tt.fields.Username,
-				Password: tt.fields.Password,
+				hostname: tt.fields.Hostname,
+				username: tt.fields.Username,
+				password: tt.fields.Password,
 			}
 			if got := b.WithUsername(tt.args.username); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("WithUsername() = %v, want %v", got, tt.want)
@@ -209,9 +209,9 @@ func TestBuilder_WithPassword(t *testing.T) {
 				password: "example_password",
 			},
 			want: &Builder{
-				Hostname: "",
-				Username: "",
-				Password: "example_password",
+				hostname: "",
+				username: "",
+				password: "example_password",
 			},
 		},
 		{
@@ -225,9 +225,9 @@ func TestBuilder_WithPassword(t *testing.T) {
 				password: "other_password",
 			},
 			want: &Builder{
-				Hostname: "",
-				Username: "",
-				Password: "other_password",
+				hostname: "",
+				username: "",
+				password: "other_password",
 			},
 		},
 		{
@@ -241,18 +241,18 @@ func TestBuilder_WithPassword(t *testing.T) {
 				password: "example_password",
 			},
 			want: &Builder{
-				Hostname: "https://tabroom.com",
-				Username: "example_username",
-				Password: "example_password",
+				hostname: "https://tabroom.com",
+				username: "example_username",
+				password: "example_password",
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			b := &Builder{
-				Hostname: tt.fields.Hostname,
-				Username: tt.fields.Username,
-				Password: tt.fields.Password,
+				hostname: tt.fields.Hostname,
+				username: tt.fields.Username,
+				password: tt.fields.Password,
 			}
 			if got := b.WithPassword(tt.args.password); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("WithPassword() = %v, want %v", got, tt.want)
@@ -321,9 +321,9 @@ func TestBuilder_Build(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			b := &Builder{
-				Hostname: tt.fields.Hostname,
-				Username: tt.fields.Username,
-				Password: tt.fields.Password,
+				hostname: tt.fields.Hostname,
+				username: tt.fields.Username,
+				password: tt.fields.Password,
 			}
 			got, got1 := b.Build()
 			if !reflect.DeepEqual(got, tt.wantErr) {

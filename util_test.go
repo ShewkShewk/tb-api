@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"time"
 )
 
 type TestServerConfiguration struct {
@@ -124,4 +125,9 @@ func (t *TestHttpServer) handle(writer http.ResponseWriter, request *http.Reques
 	}
 	writer.WriteHeader(response.code)
 	writer.Write([]byte(response.body))
+}
+
+func getTimeForDate(date string) time.Time {
+	parsed, _ := time.Parse(time.DateOnly, date)
+	return parsed
 }

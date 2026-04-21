@@ -6,9 +6,9 @@ import (
 )
 
 type Builder struct {
-	Hostname string
-	Username string
-	Password string
+	hostname string
+	username string
+	password string
 }
 
 func NewBuilder() *Builder {
@@ -16,17 +16,17 @@ func NewBuilder() *Builder {
 }
 
 func (b *Builder) WithHostname(hostname string) *Builder {
-	b.Hostname = hostname
+	b.hostname = hostname
 	return b
 }
 
 func (b *Builder) WithUsername(username string) *Builder {
-	b.Username = username
+	b.username = username
 	return b
 }
 
 func (b *Builder) WithPassword(password string) *Builder {
-	b.Password = password
+	b.password = password
 	return b
 }
 
@@ -35,25 +35,25 @@ func (b *Builder) Build() (error, *TabroomApi) {
 	if err != nil {
 		return err, nil
 	}
-	parsed, err := url.Parse(b.Hostname)
+	parsed, err := url.Parse(b.hostname)
 	if err != nil {
 		return err, nil
 	}
 	return nil, &TabroomApi{
-		username: b.Username,
-		password: b.Password,
+		username: b.username,
+		password: b.password,
 		client:   newDefaultHttpClient(*parsed),
 	}
 }
 
 func (b *Builder) validate() error {
-	if b.Hostname == "" {
+	if b.hostname == "" {
 		return errors.New("missing API URL in builder")
 	}
-	if b.Username == "" {
+	if b.username == "" {
 		return errors.New("missing username in builder")
 	}
-	if b.Password == "" {
+	if b.password == "" {
 		return errors.New("missing password in builder")
 	}
 	return nil

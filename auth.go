@@ -12,6 +12,11 @@ const (
 	SHA  = "sha"
 )
 
+func (t *TabroomApi) ensureAuthenticated() error {
+	_, err := t.retrieveCredentials()
+	return err
+}
+
 func (t *TabroomApi) retrieveCredentials() (string, error) {
 	loginParameters, err := t.getLoginParameters()
 	if err != nil {
